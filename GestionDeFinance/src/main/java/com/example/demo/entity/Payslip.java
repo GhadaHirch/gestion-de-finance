@@ -1,89 +1,81 @@
 package com.example.demo.entity;
 
-import org.springframework.data.mongodb.core.mapping.Field;
-
 import java.util.Date;
-
+import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.CompoundIndex;
-import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+
 
 @Document
 public class Payslip {
 	@Id
-	private String id_payslip;
+	private String idPayslip;
 	@DBRef
-	private String id_user;
+	private Contract idContract;
 	@Field("amount")
 	private String amount;
-	@Field("pay_period")
-	private String payperiod;
-	@Field("company_name")
-	private String companyName;
+	@Field("prime")
+	private String prime;
+	@Field("id_generated")
+	private String idGenerated;
 	@Field("creation_date")
 	private Date creationDate;
+	@Field("free_field")
+	private String freeField;
 	
-	public Payslip(String id_user, String amount, String payperiod, String companyName, Date creationDate) {
-		this.id_user = id_user;
+	public Payslip(Contract idContract,String amount, String prime, String idGenerated, Date creationDate,String freeField) {
+		this.idContract = idContract;
 		this.amount = amount;
-		this.payperiod  = payperiod;
-		this.companyName = companyName;
+		this.prime  = prime;
+		this.idGenerated = idGenerated;
 		this.creationDate = creationDate;
+		this.freeField = freeField;
 		
 	}
-
-	public String getId_payslip() {
-		return id_payslip;
+	public String getIdPayslip() {
+		return idPayslip;
 	}
-
-	public void setId_payslip(String id_payslip) {
-		this.id_payslip = id_payslip;
+	public void setIdPayslip(String idPayslip) {
+		this.idPayslip = idPayslip;
 	}
-
+	public Contract getIdContract() {
+		return idContract;
+	}
+	public void setIdContract(Contract idContract) {
+		this.idContract = idContract;
+	}
 	public String getAmount() {
 		return amount;
 	}
-
 	public void setAmount(String amount) {
 		this.amount = amount;
 	}
-
-	public String getPayperiod() {
-		return payperiod;
+	public String getPrime() {
+		return prime;
 	}
-
-	public void setPayperiod(String payperiod) {
-		this.payperiod = payperiod;
+	public void setPrime(String prime) {
+		this.prime = prime;
 	}
-
-	public String getCompanyName() {
-		return companyName;
+	public String getIdGenerated() {
+		return idGenerated;
 	}
-
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
+	public void setIdGenerated(String idGenerated) {
+		this.idGenerated = idGenerated;
 	}
-
 	public Date getCreationDate() {
 		return creationDate;
 	}
-
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
-
-	public String getId_user() {
-		return id_user;
+	public String getFreeField() {
+		return freeField;
 	}
-
-	public void setId_user(String id_user) {
-		this.id_user = id_user;
+	public void setFreeField(String freeField) {
+		this.freeField = freeField;
 	}
-
 	public String toString() {
-		return "Payslip id_user:"+id_user+" Amount :"+amount+" Pay Period:"+payperiod+" Companyname:"+companyName+" creationdate:"+"creationDate";
+		return "Payslip idContract:"+idContract+"  amount:"+amount+" prime :"+prime+" idGenerated:"+idGenerated+" creationDate:"+creationDate+" freeField:"+"freeField";
 	}
 }

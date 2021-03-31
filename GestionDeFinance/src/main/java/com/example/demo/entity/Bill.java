@@ -1,70 +1,109 @@
 package com.example.demo.entity;
 
 import org.springframework.data.mongodb.core.mapping.Field;
-
 import java.util.Date;
-
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.CompoundIndex;
-import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+
 
 @Document
 public class Bill {
 	@Id
-	private String id_bill;
+	private String idBill;
 	@DBRef
-	private String id_user;
-	@Field("bill_type")
-	private String bill_type;
-	@Field("numero")
-	private String numero;
-	@Field("info_supp")
-	private String info_supp;
-	@Field("creationDate")
+	private User idUser;
+	@Field("title")
+	private String title;
+	@Field("amount_BC")
+	private String amountBC;
+	@Field("TVA")
+	private String TVA;
+	@Field("timbre")
+	private String timbre;
+	@Field("amount_TT")
+	private String amountTT;
+	@Field("id_generated")
+	private String idGenerated;
+	@Field("creation_date")
 	private Date creationDate;
+	@Field("free_field")
+	private String freeField;
 	
-	public Bill(String id_user,String bill_type, String numero, String info_supp, Date creationDate) {
-		this.id_user = id_user;
-		this.bill_type = bill_type;
-		this.numero  = numero;
-		this.info_supp  = info_supp;
+	public Bill(User idUser,String title, String amountBC, String TVA,String timbre,String amountTT,String idGenerated,Date creationDate,String freeField) {
+		this.idUser = idUser;
+		this.title = title;
+		this.amountBC  = amountBC;
+		this.TVA  = TVA;
+		this.timbre = timbre;
+		this.amountTT = amountTT;
+		this.idGenerated= idGenerated;
 		this.creationDate =creationDate;
+		this.freeField = freeField;
 	}
 	
-	
-	public String getId_bill() {
-		return id_bill;
+	public String getIdBill() {
+		return idBill;
 	}
 
-	public void setId_bill(String id_bill) {
-		this.id_bill = id_bill;
+	public void setIdBill(String idBill) {
+		this.idBill = idBill;
 	}
 
-	public String getBill_type() {
-		return bill_type;
+	public User getIdUser() {
+		return idUser;
 	}
 
-	public void setBill_type(String bill_type) {
-		this.bill_type = bill_type;
+	public void setIdUser(User idUser) {
+		this.idUser = idUser;
 	}
 
-	public String getNumero() {
-		return numero;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setNumero(String numero) {
-		this.numero = numero;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getInfo_supp() {
-		return info_supp;
+	public String getAmountBC() {
+		return amountBC;
 	}
 
-	public void setInfo_supp(String info_supp) {
-		this.info_supp = info_supp;
+	public void setAmountBC(String amountBC) {
+		this.amountBC = amountBC;
+	}
+
+	public String getTVA() {
+		return TVA;
+	}
+
+	public void setTVA(String tVA) {
+		TVA = tVA;
+	}
+
+	public String getTimbre() {
+		return timbre;
+	}
+
+	public void setTimbre(String timbre) {
+		this.timbre = timbre;
+	}
+
+	public String getAmountTT() {
+		return amountTT;
+	}
+
+	public void setAmountTT(String amountTT) {
+		this.amountTT = amountTT;
+	}
+
+	public String getIdGenerated() {
+		return idGenerated;
+	}
+
+	public void setIdGenerated(String idGenerated) {
+		this.idGenerated = idGenerated;
 	}
 
 	public Date getCreationDate() {
@@ -75,18 +114,15 @@ public class Bill {
 		this.creationDate = creationDate;
 	}
 
-
-	public String getId_user() {
-		return id_user;
+	public String getFreeField() {
+		return freeField;
 	}
 
-
-	public void setId_user(String id_user) {
-		this.id_user = id_user;
+	public void setFreeField(String freeField) {
+		this.freeField = freeField;
 	}
-
 
 	public String toString() {
-		return "Contract id_user:"+id_user+" Bill Type :"+bill_type+", Info Supp:"+info_supp+", Numero:"+numero+" Creation Date:"+creationDate;
+		return "Bill idUser:"+idUser+" title :"+title+"  amountBC:"+amountBC+" TVA:"+TVA+" timbre:"+timbre+" amountTT:"+amountTT+" idGenerated:"+idGenerated+" Creation Date:"+creationDate+" freeField:"+freeField;
 	}
 }

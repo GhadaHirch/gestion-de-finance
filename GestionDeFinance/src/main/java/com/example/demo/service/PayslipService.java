@@ -1,13 +1,10 @@
 package com.example.demo.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.example.demo.entity.Payslip;
 import com.example.demo.repository.PayslipRepository;
-
 
 
 @Service
@@ -17,12 +14,12 @@ public class PayslipService {
 	private PayslipRepository payslipRepository;
 	
 	@SuppressWarnings("finally")
-	 private Payslip findOne(String Id) {
+	 private Payslip findOne(String IdPayslip) {
 		Payslip instance = null;
 	  try {
 	   List < Payslip > payslipList = payslipRepository.findAll();
 	   for (Payslip payslip: payslipList) {
-	    if (payslip.getId_payslip().equals(Id)) {
+	    if (payslip.getIdPayslip().equals(IdPayslip)) {
 	     instance = payslip;
 	     break;
 	    }
@@ -35,20 +32,20 @@ public class PayslipService {
 	 }
 	
 	//fill_in operation
-	public Payslip fillin(Payslip pay) {
-		return payslipRepository.save(pay);
+	public Payslip fillin(Payslip payslip) {
+		return payslipRepository.save(payslip);
 	}
 	
     //update operation
-	public Payslip update(String id_payslip,Payslip payslip) {
-		Payslip pay = this.findOne(id_payslip);
-		pay.setCompanyName(payslip.getCompanyName());
-		pay.setAmount(payslip.getAmount());
-		pay.setPayperiod(payslip.getPayperiod());
-		pay.setCreationDate(payslip.getCreationDate());
-		return payslipRepository.save(pay);
+	public Payslip update(String idPayslip,Payslip payslip) {
+		Payslip p = this.findOne(idPayslip);
+		p.setAmount(payslip.getAmount());
+		p.setFreeField(payslip.getFreeField());
+		p.setPrime(payslip.getPrime());
+		return payslipRepository.save(p);
 	}
 		
+	
 	
 	}
 

@@ -1,16 +1,10 @@
 package com.example.demo.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.example.demo.entity.Bill;
-import com.example.demo.entity.Contract;
-import com.example.demo.entity.User;
 import com.example.demo.repository.BillRepository;
-
-
 
 @Service
 public class BillService {
@@ -19,12 +13,12 @@ public class BillService {
 	private BillRepository billRepository;
 	
 	@SuppressWarnings("finally")
-	 private Bill findOne(String Id_bill) {
+	 private Bill findOne(String IdBill) {
 	 Bill instance = null;
 	  try {
 	   List < Bill > billList = billRepository.findAll();
 	   for (Bill bill: billList) {
-	    if (bill.getId_bill().equals(Id_bill)) {
+	    if (bill.getIdBill().equals(IdBill)) {
 	     instance = bill;
 	     break;
 	    }
@@ -40,16 +34,24 @@ public class BillService {
 	public Bill add(Bill b) {
 		return billRepository.insert(b);
 	}
+	//Retrieve operation
+		
+		/*public Bill[] getByBillType(String billType) {
+			return billRepository.findByBillType(billType);
+		}*/
 	
     //update operation
-	public Bill update(String id_bill,Bill bill) {
-		Bill b = this.findOne(id_bill);
-		b.setBill_type(bill.getBill_type());
-		b.setNumero(bill.getNumero());
-		b.setInfo_supp(bill.getInfo_supp());
-		b.setCreationDate(bill.getCreationDate());
+	public Bill update(String idBill,Bill bill) {
+		Bill b = this.findOne(idBill);
+		b.setAmountBC(bill.getAmountBC());
+		b.setAmountTT(bill.getAmountTT());
+		b.setFreeField(bill.getFreeField());
+		b.setTitle(bill.getTitle());
+		b.setTimbre(bill.getTimbre());
+		b.setTVA(bill.getTVA());
 		return billRepository.save(b);
 	}
+	
 		
 	
 	}

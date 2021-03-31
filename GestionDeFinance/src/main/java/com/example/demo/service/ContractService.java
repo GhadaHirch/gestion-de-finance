@@ -1,12 +1,11 @@
 package com.example.demo.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.entity.Contract;
-import com.example.demo.entity.User;
 import com.example.demo.repository.ContractRepository;
+
 @Service
 public class ContractService {
    
@@ -15,11 +14,11 @@ public class ContractService {
 	
 	@SuppressWarnings("finally")
 	 private Contract findOne(String Id) {
-	 Contract instance = null;
+		Contract instance = null;
 	  try {
 	   List < Contract > contractList = contractRepository.findAll();
 	   for (Contract contract: contractList) {
-	    if (contract.getId_contract().equals(Id)) {
+	    if (contract.getIdContract().equals(Id)) {
 	     instance = contract;
 	     break;
 	    }
@@ -32,26 +31,28 @@ public class ContractService {
 	 }
 	
 	//Create operation
-	public Contract create(Contract c) {
-		return contractRepository.save(c);
-	}
-	
-    //update operation
-	public Contract update(String id_contract,Contract contract) {
-		Contract c = this.findOne(id_contract);
-		c.setCompanyName(contract.getCompanyName());
-		c.setPeriod(contract.getPeriod());
-		c.setCreationDate(contract.getCreationDate());
-		return contractRepository.save(c);
-	}
-		
-	//Delete operation
-	public void deleteAll() {
-			contractRepository.deleteAll();
-		}
-		public void delete(String id_contract) {
-			Contract c = this.findOne(id_contract);
-			contractRepository.delete(c);
-		}
+	public Contract create(Contract contract) {
+		contract.setDeleted(false);
+		return contractRepository.save(contract);
 	}
 
+	//Update operation
+	public Contract update(String idContract,Contract contract) {
+		Contract c = this.findOne(idContract);
+		c.setCompanyName(contract.getCompanyName());
+		c.setFinishDate(contract.getFinishDate());
+		c.setStartDate(contract.getStartDate());
+		c.setSalary(contract.getSalary());
+		c.setFreeField(contract.getFreeField());
+		return contractRepository.save(c);
+	}
+
+	//Delete operation
+	
+	public void delete(String idContract) {
+		Contract c = this.findOne(idContract);
+		c.setDeleted(true);
+		contractRepository.save(c);
+		
+	}
+}
